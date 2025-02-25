@@ -1,7 +1,7 @@
 # random-image-server
 Serves a random image from a directory. Listens to file system events to automatically update available images.
 
-NOTE: I threw together this program to serve random backgrounds to my homelab (homepage)[https://gethomepage.dev/]. I have not done any testing. Software provided as-is.
+NOTE: I threw together this program to serve random backgrounds to my homelab [homepage](https://gethomepage.dev/). I have not done any testing. Software provided as-is.
 
 ## Usage
 Simply run the program with no arguments.
@@ -15,6 +15,22 @@ Two environment variables are available:
 Docker run example:
 ```bash
 docker run -p 8080:8080 --volume /path/to/images:/images:ro gabehf/random-image-server
+```
+
+Docker compose example:
+```yaml
+services:
+  random-image-server:
+    image: gabehf/random-image-server:latest
+    container_name: random-image-server
+    environment:
+      ALLOWED_EXTENSIONS: .png,.jpg # comma-separated; default: .png,.jpg,.jpeg,.webp
+    ports:
+      - 8888:8080
+    volumes:
+      - /path/to/my/images/:/images:ro
+    restart: unless-stopped
+
 ```
 
 ### From Source
