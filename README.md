@@ -26,7 +26,7 @@ services:
     environment:
       ALLOWED_EXTENSIONS: .png,.jpg # comma-separated; default: .png,.jpg,.jpeg,.webp
     ports:
-      - 8888:8080
+      - 8080:8080
     volumes:
       - /path/to/my/images/:/images:ro
     restart: unless-stopped
